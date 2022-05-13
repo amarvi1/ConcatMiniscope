@@ -113,14 +113,14 @@ ms.ds = spatial_downsampling;
 ms.FrameRate = concatInfo.FrameRate;
 save(strcat(path,filesep,ConcatFolder, filesep, 'msConcat.mat'),'ms');
 
-[ms, neuron] = msRunCNMFE_Concat(ms);
+[ms,neuron_full] = CaImAn_CNMFE(ms);
 
 analysis_duration = toc(script_start);
 ms.analysis_duration = analysis_duration;
 ms.time = (1:sum(concatInfo.NumberFramesSessions))*(1/concatInfo.FrameRate)*1000;
 
 save(strcat(path,filesep,ConcatFolder, filesep, 'msConcat.mat'),'ms', '-v7.3');
-save (strcat(path,filesep,ConcatFolder, filesep, 'neuronFull.mat'), 'neuron', '-v7.3');
+save (strcat(path,filesep,ConcatFolder, filesep, 'neuronFull.mat'), 'neuron_full', '-v7.3');
 
 disp('all msRun finally done!!!');
 datetime
