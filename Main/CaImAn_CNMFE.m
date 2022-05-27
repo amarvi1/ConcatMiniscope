@@ -192,6 +192,14 @@ colormap winter;
 axis equal; axis off;
 title('contours of estimated neurons');
 
+%% run GUI for modifying component selection (optional, close twice to save values)
+ run_GUI = false;
+ if run_GUI
+     GUIout = ROI_GUI(neuron.A,neuron.options,Cn,neuron.Coor,keep,ROIvars);   
+     options = GUIout{2};
+     keep = GUIout{3};    
+ end
+
 % plot contours with IDs
 % [Cn, pnr] = neuron.correlation_pnr(Y(:, round(linspace(1, T, min(T, 1000)))));
 figure;
